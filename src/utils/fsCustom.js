@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const crypto = require('crypto');
 
 const talkersData = async () => {
     try {
@@ -10,7 +11,13 @@ const talkersData = async () => {
     }
 };
 
+const tokenGen = () => {
+    const token = crypto.randomBytes(8).toString('hex');
+    return token;
+};
+
 module.exports = {
     talkersData,
+    tokenGen,
 
 };

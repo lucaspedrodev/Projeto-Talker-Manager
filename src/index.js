@@ -1,5 +1,5 @@
 const express = require('express');
-const { talkersData } = require('./utils/fsCustom');
+const { talkersData, tokenGen } = require('./utils/fsCustom');
 
 const app = express();
 app.use(express.json());
@@ -31,6 +31,10 @@ app.get('/talker/:id', async (req, res) => {
     return res.status(200).json(findTalker);
   } 
     return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+});
+
+app.post('/login', (_req, res) => {
+  res.status(200).json({ token: tokenGen() });
 });
 
 app.listen(PORT, () => {
